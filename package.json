@@ -1,0 +1,62 @@
+{
+  "name": "gql-knowledge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch ./src/main.ts",
+    "start": "tsx ./src/main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./src",
+    "format": "prettier --write './src/**/*.{js,jsx,ts,tsx,html,css,md,json}' --config ./.prettierrc.json",
+    "prepare": "prisma generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@9.15.3+sha512.1f79bc245a66eb0b07c5d4d83131240774642caaa86ef7d0434ab47c0d16f66b04e21e0c086eb61e62c77efc4d7f7ec071afad3796af64892fae66509173893a",
+  "dependencies": {
+    "@fastify/cors": "^10.0.2",
+    "@fastify/env": "^5.0.2",
+    "@fastify/formbody": "^8.0.2",
+    "@fastify/jwt": "^9.0.3",
+    "@fastify/multipart": "^9.0.2",
+    "@fastify/sensible": "^6.0.2",
+    "@fastify/websocket": "^11.0.2",
+    "@prisma/client": "^6.2.1",
+    "bcryptjs": "^2.4.3",
+    "chalk": "^5.4.1",
+    "date-fns": "^4.1.0",
+    "debug": "^4.4.0",
+    "dotenv": "^16.4.7",
+    "fastify": "^5.2.1",
+    "fastify-bcrypt": "^1.0.1",
+    "fastify-plugin": "^5.0.1",
+    "fastify-raw-body": "^5.0.0",
+    "graphql": "^16.10.0",
+    "graphql-scalars": "^1.24.0",
+    "graphql-subscriptions": "^3.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mercurius": "^16.0.1",
+    "radash": "^12.1.0",
+    "sqlite": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.10.7",
+    "@types/ws": "^8.5.13",
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0",
+    "eslint": "^9.18.0",
+    "eslint-plugin-prettier": "^5.2.2",
+    "pino-pretty": "^13.0.0",
+    "prettier": "^3.4.2",
+    "prisma": "^6.2.1",
+    "tsc-alias": "^1.8.10",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed"
+  }
+}

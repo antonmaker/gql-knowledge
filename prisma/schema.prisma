@@ -1,0 +1,50 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./sqlite.db"
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  name      String?
+  password  String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now()) @updatedAt
+  Movie     Movie[]
+}
+
+model Movie {
+  id            Int           @id @default(autoincrement())
+  title         String
+  description   String?
+  releaseDate   DateTime
+  genre         String?
+  contentRating ContentRating
+  likes         Int?
+  /// Out of 5
+  rating        Float?
+  createdById   Int
+  createdBy     User          @relation(fields: [createdById], references: [id])
+  createdAt     DateTime?     @default(now())
+  updatedAt     DateTime?     @default(now()) @updatedAt
+}
+
+enum ContentRating {
+  /// General Audience - Suitable for all ages
+  G
+  /// Parental Guidance Suggested
+  PG
+  /// Parents Strongly Cautioned - Suitable for ages 13 and above
+  PG_13
+  /// Restricted - Suitable for ages 17 and above
+  R
+  /// Adults Only - No one under 17 admitted
+  NC_17
+  /// Not officially rated
+  UNRATED
+}
