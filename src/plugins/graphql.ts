@@ -1,22 +1,7 @@
 import type { FastifyInstance } from 'fastify'
 import mercurius from 'mercurius'
-import SchemaBuilder from '@pothos/core'
 import { AltairFastify } from 'altair-fastify-plugin'
-
-const builder = new SchemaBuilder({})
-
-builder.queryType({
-  fields: (t) => ({
-    hello: t.string({
-      args: {
-        name: t.arg.string(),
-      },
-      resolve: (parent, { name }) => `hello, ${name || 'World'}`,
-    }),
-  }),
-})
-
-const schema = builder.toSchema()
+import { schema } from '~/graphql'
 
 export const registerGraphql = async (server: FastifyInstance) => {
   server.register(mercurius, {
