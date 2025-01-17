@@ -21,4 +21,4 @@ yarn-error.log*
 # build output
 build/
 dist/
-.google/
+sqllite.db*
