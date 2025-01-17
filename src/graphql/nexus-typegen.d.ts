@@ -78,6 +78,13 @@ export interface NexusGenObjects {
     updatedAt?: string | null; // String
   }
   Query: {};
+  User: { // root type
+    createdAt?: string | null; // String
+    email?: string | null; // String
+    id: string; // ID!
+    name?: string | null; // String
+    updatedAt?: string | null; // String
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -94,6 +101,7 @@ export interface NexusGenFieldTypes {
   Movie: { // field return type
     contentRating: NexusGenEnums['ContentRating'] | null; // ContentRating
     createdAt: string | null; // String
+    createdBy: NexusGenRootTypes['User'] | null; // User
     createdById: string | null; // String
     description: string | null; // String
     id: string; // ID!
@@ -107,6 +115,16 @@ export interface NexusGenFieldTypes {
     hello: string; // String!
     movie: NexusGenRootTypes['Movie'] | null; // Movie
     movies: Array<NexusGenRootTypes['Movie'] | null> | null; // [Movie]
+    user: NexusGenRootTypes['User'] | null; // User
+    users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
+  }
+  User: { // field return type
+    createdAt: string | null; // String
+    email: string | null; // String
+    id: string; // ID!
+    movies: Array<NexusGenRootTypes['Movie'] | null> | null; // [Movie]
+    name: string | null; // String
+    updatedAt: string | null; // String
   }
 }
 
@@ -114,6 +132,7 @@ export interface NexusGenFieldTypeNames {
   Movie: { // field return type name
     contentRating: 'ContentRating'
     createdAt: 'String'
+    createdBy: 'User'
     createdById: 'String'
     description: 'String'
     id: 'ID'
@@ -127,6 +146,16 @@ export interface NexusGenFieldTypeNames {
     hello: 'String'
     movie: 'Movie'
     movies: 'Movie'
+    user: 'User'
+    users: 'User'
+  }
+  User: { // field return type name
+    createdAt: 'String'
+    email: 'String'
+    id: 'ID'
+    movies: 'Movie'
+    name: 'String'
+    updatedAt: 'String'
   }
 }
 
@@ -136,6 +165,9 @@ export interface NexusGenArgTypes {
       name?: string | null; // String
     }
     movie: { // args
+      id: string; // ID!
+    }
+    user: { // args
       id: string; // ID!
     }
   }

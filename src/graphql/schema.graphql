@@ -30,6 +30,7 @@ scalar LocalTime
 type Movie {
   contentRating: ContentRating
   createdAt: String
+  createdBy: User
   createdById: String
   description: String
   id: ID!
@@ -44,9 +45,21 @@ type Query {
   hello(name: String): String!
   movie(id: ID!): Movie
   movies: [Movie]
+  user(id: ID!): User
+  users: [User]
 }
 
 enum SortOrder {
   asc
   desc
+}
+
+""""""
+type User {
+  createdAt: String
+  email: String
+  id: ID!
+  movies: [Movie]
+  name: String
+  updatedAt: String
 }

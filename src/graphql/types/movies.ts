@@ -24,7 +24,16 @@ export const Movie = objectType({
     t.int('likes')
     t.float('rating')
     t.string('createdById')
-    // t.field('createdBy', { type: 'User' })
+    t.field('createdBy', {
+      type: 'User',
+      resolve(movie, _args, ctx) {
+        if (!movie?.createdById) return null
+
+        return ctx.prisma.user.findUnique({
+          where: { id: parseInt(movie.createdById, 10) }
+        })
+      }
+    })
     t.string('createdAt')
     t.string('updatedAt')
   },
