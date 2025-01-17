@@ -41,12 +41,32 @@ type Movie {
   updatedAt: String
 }
 
+type Mutation {
+  signIn(email: String!, password: String!): SignInResult!
+}
+
 type Query {
   hello(name: String): String!
+  me: User
   movie(id: ID!): Movie
   movies: [Movie]
   user(id: ID!): User
   users: [User]
+}
+
+type SignInResult {
+  sessionToken: String
+  user: User
+}
+
+input SignUpInput {
+  email: String!
+  name: String!
+  password: String!
+}
+
+type SignUpResult {
+  user: User!
 }
 
 enum SortOrder {

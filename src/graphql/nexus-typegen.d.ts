@@ -46,6 +46,11 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  SignUpInput: { // input type
+    email: string; // String!
+    name: string; // String!
+    password: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -77,7 +82,15 @@ export interface NexusGenObjects {
     title?: string | null; // String
     updatedAt?: string | null; // String
   }
+  Mutation: {};
   Query: {};
+  SignInResult: { // root type
+    sessionToken?: string | null; // String
+    user?: NexusGenRootTypes['User'] | null; // User
+  }
+  SignUpResult: { // root type
+    user: NexusGenRootTypes['User']; // User!
+  }
   User: { // root type
     createdAt?: string | null; // String
     email?: string | null; // String
@@ -111,12 +124,23 @@ export interface NexusGenFieldTypes {
     title: string | null; // String
     updatedAt: string | null; // String
   }
+  Mutation: { // field return type
+    signIn: NexusGenRootTypes['SignInResult']; // SignInResult!
+  }
   Query: { // field return type
     hello: string; // String!
+    me: NexusGenRootTypes['User'] | null; // User
     movie: NexusGenRootTypes['Movie'] | null; // Movie
     movies: Array<NexusGenRootTypes['Movie'] | null> | null; // [Movie]
     user: NexusGenRootTypes['User'] | null; // User
     users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
+  }
+  SignInResult: { // field return type
+    sessionToken: string | null; // String
+    user: NexusGenRootTypes['User'] | null; // User
+  }
+  SignUpResult: { // field return type
+    user: NexusGenRootTypes['User']; // User!
   }
   User: { // field return type
     createdAt: string | null; // String
@@ -142,12 +166,23 @@ export interface NexusGenFieldTypeNames {
     title: 'String'
     updatedAt: 'String'
   }
+  Mutation: { // field return type name
+    signIn: 'SignInResult'
+  }
   Query: { // field return type name
     hello: 'String'
+    me: 'User'
     movie: 'Movie'
     movies: 'Movie'
     user: 'User'
     users: 'User'
+  }
+  SignInResult: { // field return type name
+    sessionToken: 'String'
+    user: 'User'
+  }
+  SignUpResult: { // field return type name
+    user: 'User'
   }
   User: { // field return type name
     createdAt: 'String'
@@ -160,6 +195,12 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    signIn: { // args
+      email: string; // String!
+      password: string; // String!
+    }
+  }
   Query: {
     hello: { // args
       name?: string | null; // String
@@ -181,7 +222,7 @@ export interface NexusGenTypeInterfaces {
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = keyof NexusGenInputs;
 
 export type NexusGenEnumNames = keyof NexusGenEnums;
 
