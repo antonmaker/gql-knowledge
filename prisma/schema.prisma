@@ -26,7 +26,7 @@ model Movie {
   genre         String?
   contentRating ContentRating
   likes         Int?
-  /// Out of 5
+  /// Out of 10
   rating        Float?
   createdById   Int
   createdBy     User          @relation(fields: [createdById], references: [id])
