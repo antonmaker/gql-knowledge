@@ -8,7 +8,7 @@ import rawBodyPlugin from 'fastify-raw-body'
 import prismaPlugin from '~/plugins/prisma'
 import authPlugin from '~/plugins/auth'
 import pubsubPlugin from '~/plugins/pubsub'
-// import { registerGraphql } from '~/plugins/graphql'
+import { registerGraphql } from '~/plugins/graphql'
 
 const registerPlugins = (server: FastifyInstance) => {
   server
@@ -31,7 +31,7 @@ const registerPlugins = (server: FastifyInstance) => {
   server.register(rawBodyPlugin)
   server.register(formbodyPlugin)
   server.register(pubsubPlugin)
-  // registerGraphql(server)
+  registerGraphql(server)
 }
 
 export default registerPlugins
