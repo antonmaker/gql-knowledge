@@ -43,6 +43,7 @@ type Movie {
 
 type Mutation {
   signIn(email: String!, password: String!): SignInResult!
+  signUp(data: SignUpInput!): SignUpResult!
 }
 
 type Query {

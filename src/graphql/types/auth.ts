@@ -77,5 +77,32 @@ export const AuthMutations = extendType({
         }
       },
     })
+    t.nonNull.field('signUp', {
+      type: 'SignUpResult',
+      args: {
+        data: nonNull(SignUpInput),
+      },
+      async resolve( _root, { data }, ctx) {
+        const existingUser = await ctx.prisma.user.findUnique({
+          where: { email: data.email },
+        })
+        if (existingUser) {
+          throw new Error('Email is taken')
+        }
+
+        const hashedPassword = await ctx.server.bcrypt.hash(data.password)
+        const user = await ctx.prisma.user.create({
+          data: {
+            email: data.email,
+            password: hashedPassword,
+            name: data.name,
+          },
+        })
+
+        return {
+          user,
+        }
+      }
+    })
   },
 })

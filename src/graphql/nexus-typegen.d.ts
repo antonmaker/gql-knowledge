@@ -126,6 +126,7 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     signIn: NexusGenRootTypes['SignInResult']; // SignInResult!
+    signUp: NexusGenRootTypes['SignUpResult']; // SignUpResult!
   }
   Query: { // field return type
     hello: string; // String!
@@ -168,6 +169,7 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: { // field return type name
     signIn: 'SignInResult'
+    signUp: 'SignUpResult'
   }
   Query: { // field return type name
     hello: 'String'
@@ -199,6 +201,9 @@ export interface NexusGenArgTypes {
     signIn: { // args
       email: string; // String!
       password: string; // String!
+    }
+    signUp: { // args
+      data: NexusGenInputs['SignUpInput']; // SignUpInput!
     }
   }
   Query: {
