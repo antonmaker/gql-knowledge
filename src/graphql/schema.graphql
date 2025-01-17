@@ -33,17 +33,30 @@ type Movie {
   createdBy: User
   createdById: String
   description: String
+  genre: String
   id: ID!
   likes: Int
   rating: Float
-  releaseDate: String
   title: String
   updatedAt: String
 }
 
+""""""
+input MovieInput {
+  contentRating: ContentRating!
+  description: String
+  genre: String
+  likes: Int
+  rating: Float
+  title: String!
+}
+
 type Mutation {
+  createMovie(data: MovieInput!): Movie
+  deleteMovie(id: ID): Movie
   signIn(email: String!, password: String!): SignInResult!
   signUp(data: SignUpInput!): SignUpResult!
+  updateMovie(data: MovieInput!, id: ID): Movie
 }
 
 type Query {

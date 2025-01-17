@@ -46,6 +46,14 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  MovieInput: { // input type
+    contentRating: NexusGenEnums['ContentRating']; // ContentRating!
+    description?: string | null; // String
+    genre?: string | null; // String
+    likes?: number | null; // Int
+    rating?: number | null; // Float
+    title: string; // String!
+  }
   SignUpInput: { // input type
     email: string; // String!
     name: string; // String!
@@ -75,10 +83,10 @@ export interface NexusGenObjects {
     createdAt?: string | null; // String
     createdById?: string | null; // String
     description?: string | null; // String
+    genre?: string | null; // String
     id: string; // ID!
     likes?: number | null; // Int
     rating?: number | null; // Float
-    releaseDate?: string | null; // String
     title?: string | null; // String
     updatedAt?: string | null; // String
   }
@@ -117,16 +125,19 @@ export interface NexusGenFieldTypes {
     createdBy: NexusGenRootTypes['User'] | null; // User
     createdById: string | null; // String
     description: string | null; // String
+    genre: string | null; // String
     id: string; // ID!
     likes: number | null; // Int
     rating: number | null; // Float
-    releaseDate: string | null; // String
     title: string | null; // String
     updatedAt: string | null; // String
   }
   Mutation: { // field return type
+    createMovie: NexusGenRootTypes['Movie'] | null; // Movie
+    deleteMovie: NexusGenRootTypes['Movie'] | null; // Movie
     signIn: NexusGenRootTypes['SignInResult']; // SignInResult!
     signUp: NexusGenRootTypes['SignUpResult']; // SignUpResult!
+    updateMovie: NexusGenRootTypes['Movie'] | null; // Movie
   }
   Query: { // field return type
     hello: string; // String!
@@ -160,16 +171,19 @@ export interface NexusGenFieldTypeNames {
     createdBy: 'User'
     createdById: 'String'
     description: 'String'
+    genre: 'String'
     id: 'ID'
     likes: 'Int'
     rating: 'Float'
-    releaseDate: 'String'
     title: 'String'
     updatedAt: 'String'
   }
   Mutation: { // field return type name
+    createMovie: 'Movie'
+    deleteMovie: 'Movie'
     signIn: 'SignInResult'
     signUp: 'SignUpResult'
+    updateMovie: 'Movie'
   }
   Query: { // field return type name
     hello: 'String'
@@ -198,12 +212,22 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    createMovie: { // args
+      data: NexusGenInputs['MovieInput']; // MovieInput!
+    }
+    deleteMovie: { // args
+      id?: string | null; // ID
+    }
     signIn: { // args
       email: string; // String!
       password: string; // String!
     }
     signUp: { // args
       data: NexusGenInputs['SignUpInput']; // SignUpInput!
+    }
+    updateMovie: { // args
+      data: NexusGenInputs['MovieInput']; // MovieInput!
+      id?: string | null; // ID
     }
   }
   Query: {
